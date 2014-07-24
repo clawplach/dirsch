@@ -1,0 +1,1 @@
+# Read the LICENSE file in the root folder

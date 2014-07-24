@@ -1,0 +1,61 @@
+---
+dir:
+    name: project
+    mode: 644
+    file:
+        name: pom.xml
+        mode: 644
+    dir:
+        name: src
+        dir:
+            - name: main
+              dir:
+                  - regex:
+                        pattern: ${{java.package.re}}
+                        recursion-depth: infinity
+                        min: 1
+                    file:
+                        regex:
+                            pattern: ${{java.source.re}}
+                            recursion-depth: infinity
+                            min: 1
+            - name: test
+              dir:
+                  - regex:
+                        pattern: ${{java.package.re}}
+                        recursion-depth: infinity
+                        min: 1
+                    file:
+                        regex:
+                            pattern: ${{java.source.re}}
+                            recursion-depth: infinity
+                            min: 1
+            - name: resource
+              dir:
+                  - regex:
+                        pattern: .*
+                        recursion-depth: infinity
+                        min: 1
+                    file:
+                        regex:
+                            pattern: *
+                            recursion-depth: infinity
+                            min: 1
+            - regex:
+                  pattern: ${{maven.srcdir.re}}
+                  recursion-depth: infinity
+              dir:
+                  - regex:
+                        pattern: .*
+                        recursion-depth: infinity
+                        min: 1
+                    file:
+                        regex:
+                            pattern: .*
+                            recursion-depth: infinity
+                            min: 1
+              file:
+                  regex:
+                      pattern: .*
+                      recursion-depth: infinity
+                      min: 1

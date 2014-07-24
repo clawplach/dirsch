@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:dirsch="urn:dirsch"
+        targetNamespace="urn:dirsch"
+        elementFormDefault="qualified"
+        version="0.0.0">
+
+    <element name="dir" type="dirsch:Dir"/>
+
+    <group name="NameGroup">
+        <sequence>
+            <element name="name" type="dirsch:Name"/>
+            <element name="min-occurs" minOccurs="0" type="dirsch:MinOccurs"/>
+        </sequence>
+    </group>
+
+    <group name="CommonGroup">
+        <sequence>
+            <choice>
+                <group ref="dirsch:NameGroup"/>
+                <element name="regex" type="dirsch:RegEx"/>
+            </choice>
+            <sequence>
+                <element name="mode" minOccurs="0" type="dirsch:FileMode"/>
+            </sequence>
+        </sequence>
+    </group>
+
+    <complexType name="Dir">
+        <sequence>
+            <group ref="dirsch:CommonGroup"/>
+            <sequence>
+                <element name="dir" minOccurs="0" maxOccurs="unbounded" type="dirsch:Dir"/>
+                <element name="file" minOccurs="0" maxOccurs="unbounded" type="dirsch:File"/>
+            </sequence>
+        </sequence>
+    </complexType>
+
+    <complexType name="File">
+        <sequence>
+            <group ref="dirsch:CommonGroup"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="RegEx">
+        <all>
+            <element name="pattern" type="dirsch:RegExPattern"/>
+            <element name="recursion-depth" minOccurs="0" type="dirsch:RecursionDepth"/>
+            <element name="min-occurs" minOccurs="0" type="dirsch:MinOccurs"/>
+            <element name="max-occurs" minOccurs="0" type="dirsch:MaxOccurs"/>
+        </all>
+    </complexType>
+
+    <simpleType name="RegExPattern">
+        <restriction base="string"/>
+    </simpleType>
+
+    <simpleType name="RecursionDepth">
+        <restriction base="nonNegativeInteger"/>
+    </simpleType>
+
+    <simpleType name="Name">
+        <restriction base="string"/>
+    </simpleType>
+
+    <simpleType name="MinOccurs">
+        <restriction base="string"/>
+    </simpleType>
+
+    <simpleType name="MaxOccurs">
+        <restriction base="string"/>
+    </simpleType>
+
+    <simpleType name="FileMode">
+        <restriction base="string">
+        </restriction>
+    </simpleType>
+
+</schema>

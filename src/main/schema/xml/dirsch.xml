@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dir xmlns="urn:dirsch"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="urn:dirsch dirsch.xsd">
+    <name>project</name>
+    <dir>
+        <name>src</name>
+        <mode>700</mode>
+        <dir>
+            <name>main</name>
+            <dir>
+                <regex>
+                    <pattern>${{java.package.re}}</pattern>
+                    <recursion-depth>1</recursion-depth>
+                    <max-occurs>1</max-occurs>
+                </regex>
+                <file>
+                    <regex>
+                        <pattern>.*\.java</pattern>
+                        <max-occurs>1</max-occurs>
+                    </regex>
+                </file>
+            </dir>
+        </dir>
+        <dir>
+            <name>test</name>
+            <min-occurs>0</min-occurs>
+        </dir>
+    </dir>
+    <dir>
+        <name>target</name>
+        <min-occurs>0</min-occurs>
+    </dir>
+    <file>
+        <name>pom.xml</name>
+    </file>
+    <file>
+        <regex>
+            <pattern>.*</pattern>
+            <max-occurs>1</max-occurs>
+        </regex>
+    </file>
+</dir>

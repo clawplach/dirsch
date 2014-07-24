@@ -1,0 +1,17 @@
+{
+    "dirsch": {
+        "mode": 777,
+        "directories": [
+            {
+                "name": "build",
+                "summary": "Project documentation"
+            }
+        ],
+        "files": [
+            {
+                "name": "README",
+                "summary": "Project README file"
+            }
+        ]
+    }
+}
